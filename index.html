@@ -14,7 +14,7 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <title>최초로 박은별 결혼해요</title>
+    <title>최초로 & 박은별 결혼 2주년</title>
     <!-- <meta property="og:image" content="/pic/1.jpeg"> -->
   </head>
   <body class="light-theme">
@@ -75,7 +75,37 @@
         <section class="hero">
           <div class="hero-wrapper">
 
-            <div class="intro-text">결혼, 아름다운 예배에 초대합니다!</div>
+            <!-- Letter Animation -->
+            <div class="letter-container">
+              <div class="letter-notification">편지가 도착했어요</div>
+              <div class="letter-envelope" id="letterEnvelope">
+                <div class="envelope-front">
+                  <div class="envelope-flap"></div>
+                </div>
+                <div class="letter-paper">
+                  <div class="letter-content" id="letterContent">
+                    <!-- Letter content will be inserted here by JavaScript -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Letter Fullscreen Modal -->
+            <div class="letter-modal" id="letterModal">
+              <button class="letter-close-btn" id="letterCloseBtn">×</button>
+              <div class="letter-modal-content">
+                <div class="letter-modal-envelope">
+                  <div class="letter-modal-flap"></div>
+                  <div class="letter-modal-paper">
+                    <div class="letter-modal-content-inner" id="letterModalContent">
+                      <!-- Letter content will be inserted here by JavaScript -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="intro-text">결혼 2주년을 기념하며</div>
             <a class="arrow-svg-wrapper ">
               <div class="help-text">아래로 천천히 내려주세요</div>
               
@@ -84,13 +114,13 @@
             </a>
 
             <div class="hero-main">
-              <p class="hero-second-subheading">최초로, 박은별</p>
-              <h1 class="hero-main-title">더채플앳청담 커티지홀 3층</h1>
+              <p class="hero-second-subheading">최초로 & 박은별</p>
+              <h1 class="hero-main-title">결혼 2주년</h1>
               <p class="hero-main-description">
-                2023 Nov. 11 SAT | 11월 11일(토) 
+                2025 Nov. 11 | 11월 11일
               </p>
               <p class="hero-main-description-time">
-                pm 12:30
+                730일의 소중한 시간
               </p>
              
             </div>
@@ -126,7 +156,7 @@
           <div class="section-detail-wrapper">
 
             <div class="section-intro-wrapper">
-              <p class="section-text">- 예식은 기독교식으로 진행됩니다. - </p>
+              <p class="section-text">- 결혼 2주년을 기념하며 - </p>
               </div>
             
             <div class="section-intro-wrapper">
@@ -140,19 +170,18 @@
            
             <div class="section-intro-wrapper">
             <h3 class="section-heading">하나님의 사랑 안에서 만난 두 사람이</h3>
-            <h3 class="section-heading">이제 주 안에서 하나가 되어</h3>
-            <h3 class="section-heading">가정을 이루는 약속을 하려 합니다.</h3>
+            <h3 class="section-heading">주 안에서 하나가 되어</h3>
+            <h3 class="section-heading">함께 걸어온 730일의 시간</h3>
 
-            <h3 class="section-heading">귀한 걸음, 오셔서 기도해 주시고</h3>
-            <h3 class="section-heading">마음껏 축복해 주시면 감사하겠습니다.</h3>
+            <h3 class="section-heading">매일이 축복이었고</h3>
+            <h3 class="section-heading">앞으로도 더 많은 사랑을 나누며 살아가겠습니다.</h3>
             <div class="section-intro-wrapper">
 
             </div>
-            <h3 class="section-heading name">최종수 • 채삼녀 장남 초로</h3>
-            <h3 class="section-heading name">박병철 • 최명자 장녀 은별</h3>
-            <p class="section-text">2023년 11월 11일 토요일</p>
-            <p class="section-text">12 : 30 PM</p>
-            <p class="section-text">더채플앳청담 커티지홀 3층</p>
+            <h3 class="section-heading name">최초로 & 박은별</h3>
+            <p class="section-text">결혼일: 2023년 11월 11일</p>
+            <p class="section-text">2주년: 2025년 11월 11일</p>
+            <p class="section-text">함께한 시간: 730일</p>
             <!-- <h4 class="section-heading">2023년 11월 11일 토요일</h4>
             <h4 class="section-heading">12 : 30 PM</h4>
             <h4 class="section-heading">더채플앳청담 커티지홀</h4> -->
@@ -617,9 +646,9 @@ var someFunction = function (event) {
     if(flag){
       document.querySelector(".mute-wrapper").innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="currentColor" d="M560-131v-62q97-28 158.5-107.5T780-481q0-101-61-181T560-769v-62q124 28 202 125.5T840-481q0 127-78 224.5T560-131ZM120-360v-240h160l200-200v640L280-360H120Zm420 48v-337q55 17 87.5 64T660-480q0 57-33 104t-87 64ZM420-648 307-540H180v120h127l113 109v-337Zm-94 168Z"/></svg>`
       myAudio.muted = true
-          myAudio.muted = false
+          myAudio.muted = true
           myAudio.volume = 0.5;
-          myAudio.play()
+         //myAudio.play()
 
     }else {
       document.querySelector(".mute-wrapper").innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="currentColor" d="M813-56 681-188q-28 20-60.5 34.5T553-131v-62q23-7 44.5-15.5T638-231L473-397v237L273-360H113v-240h156L49-820l43-43 764 763-43 44Zm-36-232-43-43q20-34 29.5-71.923T773-481q0-103.322-60-184.661T553-769v-62q124 28 202 125.5T833-481q0 51-14 100t-42 93ZM643-422l-90-90v-130q47 22 73.5 66t26.5 96q0 15-2.5 29.5T643-422ZM473-592 369-696l104-104v208Zm-60 286v-150l-84-84H173v120h126l114 114Zm-42-192Z"/></svg>`;
@@ -641,6 +670,106 @@ function copy_to_clipboard(event) {
   document.execCommand("Copy");
   alert('복사되었습니다, 감사합니다.');
 }   
+
+// Letter Content (Edit this to change the letter)
+const letterData = {
+  greeting: '사랑하는 은별이에게',
+
+  body: [
+    '벌써 우리가 결혼한 지 2년이라니,',
+    '시간이 정말 빠르다.',
+    '함께한 모든 순간이 선명하게 남아 있어서, 마치 어제처럼 느껴져.',
+    '',
+    '돌이켜보면 내가 부족했던 순간도 많았고,',
+    '네가 서운했을 때도 있었을 거야.',
+    '그래도 그런 날들 덕분에 우리가 더 단단해졌다고 믿어.',
+    '',
+    '앞으로는 더 잘할게.',
+    '네가 힘들 때 더 먼저 안아주고,',
+    '네가 웃을 수 있는 이유가 내가 되도록 노력할게.',
+    '',
+    '2년 동안 고마워, 그리고 앞으로의 시간은 더 따뜻하게 만들어갈게.',
+    '',
+    '사랑해, 은별아.',
+  ],
+
+  date: '2025년 11월 11일',
+  signature: '사랑하는 남편, 최초로'
+};
+
+// Function to render letter content
+function renderLetterContent(containerId, isModal = false) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  
+  const bodyClass = isModal ? 'letter-body' : 'letter-body';
+  const greetingClass = 'letter-greeting';
+  const signatureClass = 'letter-signature';
+  
+  let html = `
+    <div class="${greetingClass}">${letterData.greeting}</div>
+    <div class="${bodyClass}">
+  `;
+  
+  letterData.body.forEach(line => {
+    if (line === '') {
+      html += '<br>';
+    } else {
+      html += `<p>${line}</p>`;
+    }
+  });
+  
+  html += `
+    </div>
+    <div class="${signatureClass}">
+      <p>${letterData.date}</p>
+      <p>${letterData.signature}</p>
+    </div>
+  `;
+  
+  container.innerHTML = html;
+}
+
+// Letter Modal functionality
+document.addEventListener('DOMContentLoaded', () => {
+  // Render letter content
+  renderLetterContent('letterContent', false);
+  renderLetterContent('letterModalContent', true);
+  
+  const letterEnvelope = document.getElementById('letterEnvelope');
+  const letterModal = document.getElementById('letterModal');
+  const letterCloseBtn = document.getElementById('letterCloseBtn');
+  
+  if (letterEnvelope && letterModal) {
+    // Open modal when letter is clicked
+    letterEnvelope.addEventListener('click', () => {
+      letterModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    // Close modal when close button is clicked
+    letterCloseBtn.addEventListener('click', () => {
+      letterModal.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+    
+    // Close modal when clicking outside the letter
+    letterModal.addEventListener('click', (e) => {
+      if (e.target === letterModal) {
+        letterModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && letterModal.classList.contains('active')) {
+        letterModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+});
   
   </script>
   <script>

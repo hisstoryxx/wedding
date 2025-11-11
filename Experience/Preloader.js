@@ -51,6 +51,26 @@ export default class Preloader extends EventEmitter {
                         .classList.add("hidden");
                 },
             });
+            // Letter animation
+            this.timeline.to(".letter-container", {
+                opacity: 1,
+                duration: 0.1,
+            }, ">-0.5")
+            .add(() => {
+                const letterContainer = document.querySelector(".letter-container");
+                letterContainer.classList.add("animate-in");
+                setTimeout(() => {
+                    document.querySelector(".letter-notification").classList.add("show");
+                }, 500);
+                setTimeout(() => {
+                    document.querySelector(".envelope-flap").classList.add("open");
+                }, 2000);
+                setTimeout(() => {
+                    document.querySelector(".letter-paper").classList.add("show");
+                    // Make letter clickable after animation
+                    letterContainer.classList.add("visible");
+                }, 2500);
+            }, ">-0.5");
             if (this.device === "desktop") {
                 this.timeline
                     .to(this.roomChildren.cube.scale, {
@@ -85,7 +105,7 @@ export default class Preloader extends EventEmitter {
                     yPercent: 0,
                     stagger: 0.05,
                     ease: "back.out(1.7)",
-                })
+                }, "+=3.5")
                 .to(
                     ".arrow-svg-wrapper",
                     {
