@@ -63,13 +63,9 @@ export default class Preloader extends EventEmitter {
                     document.querySelector(".letter-notification").classList.add("show");
                 }, 500);
                 setTimeout(() => {
-                    document.querySelector(".envelope-flap").classList.add("open");
-                }, 2000);
-                setTimeout(() => {
-                    document.querySelector(".letter-paper").classList.add("show");
-                    // Make letter clickable after animation
+                    // Make letter clickable after notification appears
                     letterContainer.classList.add("visible");
-                }, 2500);
+                }, 1500);
             }, ">-0.5");
             if (this.device === "desktop") {
                 this.timeline

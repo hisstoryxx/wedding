@@ -27,13 +27,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rozha+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap" rel="stylesheet">
    
     
     <div class="experience">
       
       <canvas class="experience-canvas"></canvas>
     </div>
-    <audio id="audio" src="/textures/music1.mp3" muted  autoplay loop></audio>
+    <audio id="audio" src="/textures/music1.mp3" autoplay loop></audio>
     <!-- Preloader -->
     <div class="preloader">
       <div class="preloader-wrapper">
@@ -78,15 +79,26 @@
             <!-- Letter Animation -->
             <div class="letter-container">
               <div class="letter-notification">편지가 도착했어요</div>
-              <div class="letter-envelope" id="letterEnvelope">
-                <div class="envelope-front">
-                  <div class="envelope-flap"></div>
-                </div>
-                <div class="letter-paper">
-                  <div class="letter-content" id="letterContent">
-                    <!-- Letter content will be inserted here by JavaScript -->
+              <div class="letter-envelope-wrapper" id="letterEnvelopeWrapper">
+                <div class="letter-envelope" id="letterEnvelope">
+                  <div class="envelope"></div>
+                  <div class="envelope-front"></div>
+                  <div class="letter-paper">
+                    <div class="letter-content" id="letterContent">
+                      <!-- Letter content will be inserted here by JavaScript -->
+                    </div>
                   </div>
                 </div>
+                <!-- Floating hearts animation -->
+                <div class="floating-hearts">
+                  <div class="floating-heart heart-one"></div>
+                  <div class="floating-heart heart-two"></div>
+                  <div class="floating-heart heart-three"></div>
+                  <div class="floating-heart heart-four"></div>
+                  <div class="floating-heart heart-five"></div>
+                </div>
+                <!-- Shadow effect -->
+                <div class="letter-shadow"></div>
               </div>
             </div>
             
@@ -95,11 +107,12 @@
               <button class="letter-close-btn" id="letterCloseBtn">×</button>
               <div class="letter-modal-content">
                 <div class="letter-modal-envelope">
+                  <div class="letter-modal-envelope-base"></div>
                   <div class="letter-modal-flap"></div>
-                  <div class="letter-modal-paper">
-                    <div class="letter-modal-content-inner" id="letterModalContent">
-                      <!-- Letter content will be inserted here by JavaScript -->
-                    </div>
+                </div>
+                <div class="letter-modal-paper">
+                  <div class="letter-modal-content-inner" id="letterModalContent">
+                    <!-- Letter content will be inserted here by JavaScript -->
                   </div>
                 </div>
               </div>
@@ -618,11 +631,12 @@ let myAudio = document.getElementById("audio") // Audio객체 취득
 //myAudio.load();
 let flag = false
         window.addEventListener('load', () => {
-          
-          myAudio.muted = true
           myAudio.muted = false
           myAudio.volume = 0.5;
-          myAudio.play()
+          myAudio.play().catch(e => {
+            // 브라우저 정책으로 인해 자동 재생이 차단된 경우
+            console.log('자동 재생이 차단되었습니다:', e);
+          });
   })
 
 
@@ -678,22 +692,28 @@ const letterData = {
   body: [
     '벌써 우리가 결혼한 지 2년이라니,',
     '시간이 정말 빠르다.',
-    '함께한 모든 순간이 선명하게 남아 있어서, 마치 어제처럼 느껴져.',
+    '함께한 모든 순간이',
+    '선명하게 남아 있어서,', 
+    '마치 어제처럼 느껴져.',
     '재밌게 놀고 맛있는 것도 많이 먹고,',
     '여행도 재밌게 다니구',
     '',
-    '돌이켜보면 내가 부족했던 순간도 많았고,',
+    '근데 .. ㅎㅎ 돌이켜보면',
+    '내가 부족했던 순간도 많았고,',
     '자기가 서운했을 때도 있었을 거야.',
-    '내가 눈치가 없어서 앞으로도 그럴 수도 있지만....',
+    '내가 눈치가 없어서',
+    '앞으로도 그럴 수도 있지만....',
     '그래도 노력하고',
     '',
     '더 잘할게.',
     '네가 힘들 때 더 먼저 안아주고,',
-    '네가 웃을 수 있는 이유가 내가 되도록 노력할게.',
+    '네가 웃을 수 있는 이유가',
+    '내가 되도록 노력할게.',
     '',
     '앞으로 더 재밌게 살자 ㅎㅎ',
     '',
     '난 자신이떠 자기도 자신있지?',
+    '초복이도 자신 있대ㅋㅋ',
     '',
     '2년 동안 고마워, 그리고 앞으로의 시간은 더 따뜻하게 만들어갈게.',
     '',
@@ -744,15 +764,25 @@ document.addEventListener('DOMContentLoaded', () => {
   renderLetterContent('letterModalContent', true);
   
   const letterEnvelope = document.getElementById('letterEnvelope');
+  const letterEnvelopeWrapper = document.getElementById('letterEnvelopeWrapper');
   const letterModal = document.getElementById('letterModal');
   const letterCloseBtn = document.getElementById('letterCloseBtn');
   
   if (letterEnvelope && letterModal) {
     // Open modal when letter is clicked
-    letterEnvelope.addEventListener('click', () => {
-      letterModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
+    const letterClickHandler = () => {
+      // Add active class with slight delay for smooth transition
+      requestAnimationFrame(() => {
+        letterModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    };
+    
+    if (letterEnvelopeWrapper) {
+      letterEnvelopeWrapper.addEventListener('click', letterClickHandler);
+    } else if (letterEnvelope) {
+      letterEnvelope.addEventListener('click', letterClickHandler);
+    }
     
     // Close modal when close button is clicked
     letterCloseBtn.addEventListener('click', () => {
