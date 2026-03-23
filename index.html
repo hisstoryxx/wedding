@@ -543,7 +543,7 @@
   //   delay: 2000,
   //   disableOnInteraction: true,
   // },
-  allowTouchMove : false,
+  allowTouchMove : true,
   pagination: {
     el: ".swiper-pagination",
     // type: "fraction",
@@ -556,7 +556,7 @@
 });
 
 const pagingSwiper = new Swiper(".swiper", {
-  allowTouchMove : false,
+  allowTouchMove : true,
   pagination: {
     el: ".swiper-pagination2",
     type: "progressbar",
@@ -580,10 +580,13 @@ mainSwiper.controller.control = pagingSwiper;
 
 
 let myDown = document.querySelector(".arrow-svg-wrapper");
-myDown.addEventListener('touchstart', () => {
-  window.scrollBy( 200, 400 );
-  //console.log("down")
-})
+myDown.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  window.scrollBy({ top: 400, behavior: 'smooth' });
+});
+myDown.addEventListener('click', () => {
+  window.scrollBy({ top: 400, behavior: 'smooth' });
+});
 
 let myAudio = document.getElementById("audio") // Audio객체 취득
 //myAudio.load();
