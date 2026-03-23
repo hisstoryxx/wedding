@@ -323,7 +323,9 @@
                 <!-- <div class="swiper-pagination"></div> -->
                 <div class="pagination_container">
                   <div class="swiper-pagination"></div>
-                  <div class="swiper-pagination2"></div>
+                  <div class="swiper-pagination2">
+                    <div class="progress-fill"></div>
+                  </div>
                 </div>
 
                 <!-- If we need navigation buttons -->
@@ -539,32 +541,23 @@
   // });
 
   const mainSwiper = new Swiper(".swiper", {
-  // autoplay: {
-  //   delay: 2000,
-  //   disableOnInteraction: true,
-  // },
   allowTouchMove : true,
   pagination: {
     el: ".swiper-pagination",
-    // type: "fraction",
     dynamicBullets: true,
   },
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
   },
-});
-
-const pagingSwiper = new Swiper(".swiper", {
-  allowTouchMove : true,
-  pagination: {
-    el: ".swiper-pagination2",
-    type: "progressbar",
+  on: {
+    slideChange: function () {
+      var progress = (this.activeIndex / (this.slides.length - 1)) * 100;
+      var fill = document.querySelector(".swiper-pagination2 .progress-fill");
+      if (fill) fill.style.width = progress + "%";
+    },
   },
 });
-
-
-mainSwiper.controller.control = pagingSwiper;
 
 // var AudioContext;
 // var audioContext;
