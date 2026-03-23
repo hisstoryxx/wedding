@@ -9,11 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       min-height: 100vh;
@@ -25,417 +21,342 @@
       overflow: hidden;
     }
 
-    /* Floating particles */
-    .particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-    }
-
+    /* Particles */
+    .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
     .particle {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      background: rgba(210, 150, 120, 0.3);
-      border-radius: 50%;
+      position: absolute; width: 6px; height: 6px;
+      background: rgba(210, 150, 120, 0.3); border-radius: 50%;
       animation: float linear infinite;
     }
-
     @keyframes float {
-      0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh) rotate(720deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; } 90% { opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
     }
 
-    /* Password overlay */
+    /* Password */
     .password-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(253, 246, 240, 0.97);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 100;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      z-index: 100; transition: opacity 0.6s ease, visibility 0.6s ease;
     }
-
-    .password-overlay.hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    .password-icon {
-      font-size: 48px;
-      margin-bottom: 24px;
-    }
-
-    .password-greeting {
-      font-size: 22px;
-      font-weight: 600;
-      color: #6b4c3b;
-      margin-bottom: 12px;
-      letter-spacing: 1px;
-    }
-
-    .password-title {
-      font-size: 14px;
-      font-weight: 300;
-      color: #a0725a;
-      margin-bottom: 32px;
-      letter-spacing: 2px;
-    }
-
-    .password-input-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-    }
-
+    .password-overlay.hidden { opacity: 0; visibility: hidden; }
+    .password-icon { font-size: 48px; margin-bottom: 24px; }
+    .password-greeting { font-size: 22px; font-weight: 600; color: #6b4c3b; margin-bottom: 12px; letter-spacing: 1px; }
+    .password-title { font-size: 14px; font-weight: 300; color: #a0725a; margin-bottom: 32px; letter-spacing: 2px; }
+    .password-input-wrapper { display: flex; flex-direction: column; align-items: center; gap: 16px; }
     .password-input {
-      width: 220px;
-      padding: 12px 20px;
-      border: 2px solid #d4a98a;
-      border-radius: 30px;
-      font-family: 'Noto Serif KR', serif;
-      font-size: 16px;
-      text-align: center;
-      background: transparent;
-      color: #6b4c3b;
-      outline: none;
-      transition: border-color 0.3s;
-      letter-spacing: 4px;
+      width: 220px; padding: 12px 20px; border: 2px solid #d4a98a; border-radius: 30px;
+      font-family: 'Noto Serif KR', serif; font-size: 16px; text-align: center;
+      background: transparent; color: #6b4c3b; outline: none; transition: border-color 0.3s; letter-spacing: 4px;
     }
-
-    .password-input::placeholder {
-      letter-spacing: 1px;
-      color: #c4a48a;
-    }
-
-    .password-input:focus {
-      border-color: #a0725a;
-    }
-
+    .password-input::placeholder { letter-spacing: 1px; color: #c4a48a; }
+    .password-input:focus { border-color: #a0725a; }
     .password-btn {
-      padding: 10px 40px;
-      background: #d4a98a;
-      color: #fff;
-      border: none;
-      border-radius: 30px;
-      font-family: 'Noto Serif KR', serif;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-      letter-spacing: 2px;
+      padding: 10px 40px; background: #d4a98a; color: #fff; border: none; border-radius: 30px;
+      font-family: 'Noto Serif KR', serif; font-size: 14px; cursor: pointer;
+      transition: background 0.3s, transform 0.2s; letter-spacing: 2px;
     }
+    .password-btn:hover { background: #c4956f; }
+    .password-btn:active { transform: scale(0.96); }
+    .password-error { color: #c0392b; font-size: 13px; height: 20px; margin-top: 8px; opacity: 0; transition: opacity 0.3s; }
+    .password-error.show { opacity: 1; }
 
-    .password-btn:hover {
-      background: #c4956f;
+    /* Intro */
+    .envelope-intro {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      z-index: 10; cursor: pointer; transition: opacity 0.6s ease, visibility 0.6s ease;
     }
+    .envelope-intro.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .envelope-intro-icon { font-size: 64px; margin-bottom: 24px; animation: gentle-bounce 2s ease-in-out infinite; }
+    .envelope-intro-text { font-size: 18px; color: #6b4c3b; letter-spacing: 1px; animation: pulse 2s ease-in-out infinite; }
+    @keyframes gentle-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 
-    .password-btn:active {
-      transform: scale(0.96);
-    }
-
-    .password-error {
-      color: #c0392b;
-      font-size: 13px;
-      height: 20px;
-      margin-top: 8px;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .password-error.show {
-      opacity: 1;
-    }
-
-    /* Envelope */
-    .envelope-scene {
-      perspective: 1200px;
-      z-index: 1;
-    }
-
-    .envelope {
+    /* ===== Main Scene ===== */
+    .scene {
       position: relative;
-      width: 320px;
-      height: 220px;
-      cursor: pointer;
-      transform-style: preserve-3d;
-    }
-
-    .envelope-body {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(145deg, #e8c9a8, #ddb992);
-      border-radius: 4px;
-      box-shadow: 0 8px 32px rgba(139, 90, 55, 0.2);
-    }
-
-    .envelope-flap {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 50%;
-      background: linear-gradient(165deg, #d4a87a, #c99b6d);
-      clip-path: polygon(0 0, 50% 100%, 100% 0);
-      transform-origin: top center;
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 3;
-    }
-
-    .envelope.open .envelope-flap {
-      transform: rotateX(180deg);
-    }
-
-    .envelope-back-flap {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 55%;
-      background: linear-gradient(to top, #c99b6d, #d4a87a);
-      clip-path: polygon(0 100%, 50% 0, 100% 100%);
       z-index: 1;
+      opacity: 0; transform: scale(0.85);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
     }
+    .scene.visible { opacity: 1; transform: scale(1); pointer-events: auto; }
 
-    .envelope-left-flap {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(to right, #c99b6d, #d4a87a);
-      clip-path: polygon(0 0, 100% 50%, 0 100%);
-      z-index: 1;
-    }
-
-    .envelope-right-flap {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(to left, #c99b6d, #d4a87a);
-      clip-path: polygon(100% 0, 0 50%, 100% 100%);
-      z-index: 1;
-    }
-
-    .heart-seal {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 4;
-      font-size: 28px;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
-      transition: opacity 0.3s, transform 0.3s;
-    }
-
-    .envelope.open .heart-seal {
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(0);
-    }
-
-    .envelope-hint {
-      position: absolute;
-      bottom: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 13px;
-      color: #a0725a;
-      white-space: nowrap;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    .envelope.open .envelope-hint {
-      display: none;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 1; }
-    }
-
-    /* Letter */
-    .letter {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      right: 10px;
+    /* ===== Envelope ===== */
+    .envelope-wrapper {
+      position: relative;
+      width: 300px;
       height: 200px;
-      background: #fffef9;
-      border-radius: 3px;
-      z-index: 2;
-      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      perspective: 1000px;
+      cursor: pointer;
       overflow: hidden;
     }
 
-    .envelope.open .letter {
-      transform: translateY(-260px);
+    .envelope-wrapper.flap-open {
+      overflow: visible;
     }
 
-    .letter-inner {
-      padding: 24px 20px;
-      text-align: center;
-      color: #5a3e2e;
-      font-size: 11px;
-      line-height: 2;
+    .envelope-body {
+      position: absolute; width: 100%; height: 100%;
+      background: linear-gradient(145deg, #e8c9a8, #ddb992);
+      border-radius: 0 0 4px 4px;
+      box-shadow: 0 8px 32px rgba(139, 90, 55, 0.2);
+      z-index: 1;
     }
 
-    .letter-date {
-      font-size: 11px;
-      color: #b08968;
-      margin-bottom: 12px;
+    .envelope-pocket {
+      position: absolute; bottom: 0; left: 0; width: 100%; height: 60%;
+      background: linear-gradient(to top, #c99b6d, #d4a87a);
+      clip-path: polygon(0 100%, 50% 10%, 100% 100%);
+      z-index: 5;
+      transition: z-index 0s 0.5s;
     }
 
-    /* Full letter modal */
-    .letter-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
+    .envelope-wrapper.flap-open .envelope-pocket {
+      z-index: 2;
+    }
+
+    .envelope-flap-wrapper {
+      position: absolute; top: 0; left: 0; width: 100%; height: 55%;
+      transform-origin: top center;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 6;
+    }
+
+    .envelope-flap {
+      width: 100%; height: 100%;
+      background: linear-gradient(165deg, #d4a87a, #c99b6d);
+      clip-path: polygon(0 0, 50% 100%, 100% 0);
+    }
+
+    .envelope-wrapper.flap-open .envelope-flap-wrapper {
+      transform: rotateX(180deg);
+      z-index: 0;
+    }
+
+    .heart-seal {
+      position: absolute; top: 38%; left: 50%; transform: translate(-50%, -50%);
+      z-index: 7; font-size: 28px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+      transition: opacity 0.3s 0.1s;
+    }
+
+    .envelope-wrapper.flap-open .heart-seal { opacity: 0; }
+
+    .envelope-hint {
+      position: absolute; bottom: -36px; left: 50%; transform: translateX(-50%);
+      font-size: 13px; color: #a0725a; white-space: nowrap;
+      animation: pulse 2s ease-in-out infinite;
+      transition: opacity 0.3s;
+    }
+
+    .envelope-hint.hidden { opacity: 0; }
+
+    /* ===== Letter ===== */
+    .letter-wrapper {
+      position: absolute;
+      top: 20px; left: 15px;
+      width: 270px;
+      height: 180px;
+      z-index: 0;
+      transform: translateY(0);
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Step 2: rise up */
+    .letter-wrapper.rise {
+      transform: translateY(-220px);
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 7;
+    }
+
+    /* Step 3: come back down in front of envelope */
+    .letter-wrapper.come-down {
+      transform: translateY(10px);
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 8;
+    }
+
+    /* After animation, the letter sits in front */
+    .letter-wrapper.settled {
+      transform: translateY(10px);
+      z-index: 8;
+      cursor: pointer;
+    }
+
+    /* The folding letter card */
+    .letter-card {
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.4);
+      position: relative;
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    /* Front of letter (title side - visible from the start) */
+    .letter-front {
+      position: absolute; width: 100%; height: 100%;
+      background: #fffef9;
+      border-radius: 4px;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+
+    .letter-front-date { font-size: 11px; color: #b08968; margin-bottom: 10px; }
+    .letter-front-title { font-size: 18px; font-weight: 600; color: #6b4c3b; margin-bottom: 8px; }
+    .letter-front-sub {
+      font-size: 11px; color: #b08968; margin-top: 12px;
+      opacity: 0; transition: opacity 0.5s ease;
+    }
+    .letter-wrapper.settled .letter-front-sub {
+      opacity: 1;
+      animation: pulse 2s ease-in-out infinite;
+      transition-delay: 0.3s;
+    }
+
+    /* Back of letter (hidden) */
+    .letter-back {
+      display: none;
+    }
+
+    /* ===== Unfolding letter ===== */
+    .unfold-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      display: flex; justify-content: center; align-items: center;
+      z-index: 50;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    .unfold-overlay.show { opacity: 1; visibility: visible; }
+
+    .unfold-scene {
+      perspective: 1200px;
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 50;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
     }
 
-    .letter-modal.show {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .letter-full {
-      width: 90%;
-      max-width: 480px;
-      max-height: 80vh;
-      background: #fffef9;
-      border-radius: 8px;
-      padding: 40px 32px;
-      overflow-y: auto;
-      transform: translateY(40px) scale(0.95);
-      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    .unfold-card {
       position: relative;
+      width: 340px;
+      height: 520px;
+      transform-style: preserve-3d;
     }
 
-    .letter-modal.show .letter-full {
-      transform: translateY(0) scale(1);
-    }
-
-    .letter-full-close {
+    /* Left page (cover - folds to the left) */
+    .unfold-left {
       position: absolute;
-      top: 16px;
-      right: 20px;
-      background: none;
-      border: none;
-      font-size: 20px;
-      color: #b08968;
-      cursor: pointer;
-      transition: color 0.3s;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transform-origin: left center;
+      transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+      z-index: 2;
     }
 
-    .letter-full-close:hover {
-      color: #6b4c3b;
+    .unfold-overlay.show .unfold-left {
+      transform: rotateY(-160deg);
     }
 
-    .letter-full-date {
-      font-size: 13px;
-      color: #b08968;
-      margin-bottom: 20px;
-      text-align: center;
+    .unfold-left-front {
+      position: absolute; width: 100%; height: 100%;
+      background: #fffef9;
+      border-radius: 6px;
+      backface-visibility: hidden;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding: 32px;
+      box-shadow: 2px 0 12px rgba(0,0,0,0.08);
     }
 
-    .letter-full-title {
-      font-size: 22px;
-      font-weight: 600;
-      color: #6b4c3b;
-      text-align: center;
-      margin-bottom: 32px;
+    .unfold-left-back {
+      position: absolute; width: 100%; height: 100%;
+      background: linear-gradient(135deg, #f5efe8, #ede4d8);
+      border-radius: 6px;
+      backface-visibility: hidden;
+      transform: rotateY(180deg);
     }
 
-    .letter-full-body {
-      font-size: 15px;
+    .unfold-cover-date { font-size: 12px; color: #b08968; margin-bottom: 16px; }
+    .unfold-cover-title { font-size: 20px; font-weight: 600; color: #6b4c3b; margin-bottom: 12px; }
+    .unfold-cover-heart { font-size: 36px; margin-bottom: 16px; }
+
+    /* Right page (content) */
+    .unfold-right {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #fffef9;
+      border-radius: 6px;
+      padding: 36px 28px;
+      overflow-y: auto;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      z-index: 1;
+    }
+
+    .unfold-right-body {
+      font-size: 14px;
       color: #5a3e2e;
-      line-height: 2.2;
+      line-height: 2;
       text-align: left;
       word-break: keep-all;
     }
 
-    .letter-full-body p {
-      margin-bottom: 16px;
-    }
+    .unfold-right-body p { margin-bottom: 12px; }
 
-    .letter-full-sign {
+    .unfold-right-sign {
       text-align: right;
-      margin-top: 32px;
-      font-size: 16px;
+      margin-top: 28px;
+      font-size: 15px;
       color: #6b4c3b;
       font-weight: 500;
     }
 
+    .unfold-close {
+      position: absolute; top: 12px; right: 16px;
+      background: none; border: none; font-size: 22px;
+      color: #b08968; cursor: pointer; z-index: 10;
+      transition: color 0.3s;
+    }
+    .unfold-close:hover { color: #6b4c3b; }
+
     /* Responsive */
+    @media (max-width: 768px) {
+      .unfold-card { width: 90vw; max-width: 360px; height: 80vh; max-height: 600px; }
+      .unfold-right { padding: 28px 22px; }
+      .unfold-right-body { font-size: 13.5px; line-height: 1.9; }
+      .unfold-right-body p { margin-bottom: 10px; }
+      .unfold-right-sign { font-size: 14px; margin-top: 20px; }
+      .unfold-left-front { padding: 28px; }
+      .unfold-cover-title { font-size: 18px; }
+      .unfold-close { top: 8px; right: 12px; }
+    }
+
     @media (max-width: 480px) {
-      .envelope {
-        width: 280px;
-        height: 190px;
-      }
+      .envelope-wrapper { width: 260px; height: 175px; }
+      .letter-wrapper { width: 232px; height: 155px; top: 18px; left: 14px; }
+      .letter-front-title { font-size: 15px; }
+      .letter-wrapper.rise { transform: translateY(-190px); }
 
-      .letter {
-        height: 170px;
-      }
+      .unfold-card { width: 92vw; height: 85vh; max-height: none; }
+      .unfold-right { padding: 24px 18px; }
+      .unfold-right-body { font-size: 13px; line-height: 1.85; }
+      .unfold-right-body p { margin-bottom: 8px; }
+      .unfold-right-sign { font-size: 13px; margin-top: 16px; }
+      .unfold-left-front { padding: 20px; }
+      .unfold-cover-title { font-size: 16px; }
+      .unfold-cover-heart { font-size: 28px; }
 
-      .envelope.open .letter {
-        transform: translateY(-230px);
-      }
-
-      .letter-full {
-        padding: 32px 24px;
-      }
-
-      .letter-full-title {
-        font-size: 19px;
-      }
-
-      .letter-full-body {
-        font-size: 14px;
-      }
-
-      .password-greeting {
-        font-size: 18px;
-      }
-
-      .password-title {
-        font-size: 12px;
-      }
+      .password-greeting { font-size: 18px; }
+      .password-title { font-size: 12px; }
+      .envelope-intro-icon { font-size: 48px; }
+      .envelope-intro-text { font-size: 15px; }
     }
   </style>
 </head>
@@ -444,75 +365,95 @@
   <!-- Particles -->
   <div class="particles" id="particles"></div>
 
-  <!-- Password overlay -->
+  <!-- Password -->
   <div class="password-overlay" id="passwordOverlay">
     <div class="password-icon">&#128140;</div>
     <div class="password-greeting">사랑하는 은별이에게 편지가 도착했어요</div>
     <div class="password-title">비밀번호를 입력해주세요</div>
     <div class="password-input-wrapper">
-      <input
-        type="password"
-        class="password-input"
-        id="passwordInput"
-        placeholder="****"
-        maxlength="20"
-        autofocus
-      />
+      <input type="password" class="password-input" id="passwordInput" placeholder="****" maxlength="20" autofocus />
       <button class="password-btn" id="passwordBtn">열기</button>
       <div class="password-error" id="passwordError">비밀번호가 틀렸어요</div>
     </div>
   </div>
 
-  <!-- Envelope -->
-  <div class="envelope-scene">
-    <div class="envelope" id="envelope">
-      <div class="envelope-body"></div>
-      <div class="envelope-left-flap"></div>
-      <div class="envelope-right-flap"></div>
-      <div class="envelope-back-flap"></div>
-
-      <!-- Letter inside -->
-      <div class="letter" id="letterPreview">
-        <div class="letter-inner">
-          <div class="letter-date">2026. 3. 23.</div>
-          <p>사랑하는 은별에게</p>
-          <p style="margin-top:8px; font-size:10px; color:#b08968;">편지를 눌러서 읽어보세요</p>
-        </div>
-      </div>
-
-      <div class="envelope-flap"></div>
-      <div class="heart-seal">&#128156;</div>
-      <div class="envelope-hint">봉투를 눌러보세요</div>
-    </div>
+  <!-- Intro -->
+  <div class="envelope-intro" id="envelopeIntro">
+    <div class="envelope-intro-icon">&#128140;</div>
+    <div class="envelope-intro-text">편지를 눌러보세요</div>
   </div>
 
-  <!-- Full letter modal -->
-  <div class="letter-modal" id="letterModal">
-    <div class="letter-full">
-      <button class="letter-full-close" id="letterClose">&times;</button>
-      <div class="letter-full-date">2026. 3. 23.</div>
-      <div class="letter-full-title">사랑하는 은별에게</div>
-      <div class="letter-full-body">
-        <p>
-          여기에 편지 내용을 작성해주세요.
-        </p>
-        <p>
-          여러 문단으로 나눠서 쓸 수 있어요.
-        </p>
-        <p>
-          진심을 담아 작성해보세요.
-        </p>
+  <!-- Scene -->
+  <div class="scene" id="scene">
+
+    <!-- Envelope -->
+    <div class="envelope-wrapper" id="envelope">
+      <div class="envelope-body"></div>
+      <div class="envelope-flap-wrapper">
+        <div class="envelope-flap"></div>
       </div>
-      <div class="letter-full-sign">
-        초로 올림
+      <div class="envelope-pocket"></div>
+      <div class="heart-seal">&#10084;&#65039;</div>
+      <div class="envelope-hint hidden" id="envelopeHint"></div>
+
+      <!-- Letter (sits inside envelope initially) -->
+      <div class="letter-wrapper" id="letterWrapper">
+        <div class="letter-card" id="letterCard">
+          <div class="letter-back"></div>
+          <div class="letter-front">
+            <div class="letter-front-date">2026. 3. 20.</div>
+            <div class="letter-front-title">사랑하는 은별에게</div>
+            <div class="letter-front-sub">편지를 눌러서 읽어보세요</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Unfolding letter overlay -->
+  <div class="unfold-overlay" id="unfoldOverlay">
+    <button class="unfold-close" id="unfoldClose">&times;</button>
+    <div class="unfold-scene">
+      <div class="unfold-card">
+        <!-- Left page (cover - folds open to left) -->
+        <div class="unfold-left">
+          <div class="unfold-left-front">
+            <div class="unfold-cover-heart">&#10084;&#65039;</div>
+            <div class="unfold-cover-date">2026. 3. 20.</div>
+            <div class="unfold-cover-title">사랑하는 은별에게</div>
+          </div>
+          <div class="unfold-left-back"></div>
+        </div>
+        <!-- Right page (content) -->
+        <div class="unfold-right">
+          <div class="unfold-right-body">
+            <p>사랑하는 자기에게,</p>
+            <p>벌써 우리가 결혼한 지 3년이나 됐네. 시간이 이렇게 빠를 줄은 몰랐는데, 그만큼 자기랑 함께한 하루하루가 자연스럽고 소중했다는 뜻이겠지.</p>
+            <p>요즘은 특히 더 실감이 나. 우리 둘만의 시간이 아니라, 곧 태어날 <strong>초복이</strong>까지 함께하는 가족이 되어가고 있다는 게. 하나님이 우리에게 초복이를 선물로 주셨다는 게 참 신기하고 감사하고, 동시에… 솔직히 조금 무섭기도 해. 근데 그런 마음보다 더 큰 건, "우린 초복이랑 행복하게 잘 살 수 있을거야!"라는 확신이야.</p>
+            <p>자기는 이미 나보다 훨씬 더 좋은 부모가 될 준비가 되어 있는 것 같고, 나는… 음… 아직도 양말 아무 데나 벗어놓고, 물 마시고 컵 싱크대에 안 갖다 놓고, 맨날 "이건 왜 여기 있어?" 소리 듣는 그런 남편이지만…</p>
+            <p>그래도 요즘은 생각해. 자기가 나를 혼낼 때마다 그냥 잔소리가 아니라, "같이 잘 살고 싶어서 하는 말"이라는 걸.</p>
+            <p>그래서인지, 혼나면서도 속으로는 조금 웃겨. "아… 또 걸렸네" 하면서도 이렇게 나를 챙겨주는 사람이 있다는 게 얼마나 다행인지 알거든.</p>
+            <p>초복이가 태어나면 지금보다 훨씬 더 정신없고, 힘들고, 서로 예민해질 순간도 많을 거야.</p>
+            <p>근데 나는 알아. 그때마다 내가 더 열심히 노력하고, 더 잘하면 된다는 걸. 자기한테 받은 만큼, 아니 그보다 더 많이 돌려줄게.</p>
+            <p>자기는 나한테 단순히 아내가 아니라, 내 하루의 중심이고, 내가 더 나은 사람이 되게 만드는 이유야. 그리고 앞으로는, 내가 누군가의 아빠가 되는 이유이기도 하고.</p>
+            <p>가끔은 내가 부족해서 미안하고, 또 가끔은 자기가 너무 고생하는 것 같아서 마음이 아플 때도 있지만, 그래도 한 가지는 확실하게 말할 수 있어.</p>
+            <p>나는 지금, 그리고 앞으로도 계속 자기랑 사는 이 삶이 너무 좋고, 자기랑 가족이 된 게 내 인생에서 제일 잘한 선택이야.</p>
+            <p>생일 진심으로 축하해. 앞으로도 많이 혼나겠지만(?) 그만큼 더 잘할게.</p>
+            <p>사랑해, 진짜 많이.</p>
+          </div>
+          <div class="unfold-right-sign">
+            2026년 3월 20일<br>자기를 제일 사랑하는 문제 많은(?) 남편이
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <script type="module">
-    // --- Password ---
     var PASSWORD = import.meta.env.VITE_LETTER_PASSWORD || "";
 
+    // --- Password ---
     var overlay = document.getElementById("passwordOverlay");
     var pwInput = document.getElementById("passwordInput");
     var pwBtn = document.getElementById("passwordBtn");
@@ -525,46 +466,75 @@
         pwError.classList.add("show");
         pwInput.value = "";
         pwInput.focus();
-        setTimeout(function () {
-          pwError.classList.remove("show");
-        }, 2000);
+        setTimeout(function () { pwError.classList.remove("show"); }, 2000);
       }
     }
-
     pwBtn.addEventListener("click", checkPassword);
-    pwInput.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") checkPassword();
-    });
+    pwInput.addEventListener("keydown", function (e) { if (e.key === "Enter") checkPassword(); });
 
-    // --- Envelope ---
-    var envelope = document.getElementById("envelope");
-    var letterPreview = document.getElementById("letterPreview");
-    var letterModal = document.getElementById("letterModal");
-    var letterClose = document.getElementById("letterClose");
-    var isOpen = false;
+    // --- Intro ---
+    var envelopeIntro = document.getElementById("envelopeIntro");
+    var scene = document.getElementById("scene");
 
-    envelope.addEventListener("click", function (e) {
-      if (!isOpen) {
-        envelope.classList.add("open");
-        isOpen = true;
-      }
-    });
+    var envelopeEl = document.getElementById("envelope");
+    var envelopeHint = document.getElementById("envelopeHint");
+    var letterWrapper = document.getElementById("letterWrapper");
+    var letterCard = document.getElementById("letterCard");
+    var unfoldOverlay = document.getElementById("unfoldOverlay");
+    var unfoldClose = document.getElementById("unfoldClose");
 
-    letterPreview.addEventListener("click", function (e) {
-      if (isOpen) {
+    var settled = false;
+
+    function startFullAnimation() {
+      // Step 1: show envelope
+      envelopeIntro.classList.add("hidden");
+      scene.classList.add("visible");
+
+      // Step 2: open flap after envelope appears
+      setTimeout(function () {
+        envelopeEl.classList.add("flap-open");
+
+        // Step 3: letter rises up
+        setTimeout(function () {
+          letterWrapper.classList.add("rise");
+
+          // Step 4: letter comes back down in front
+          setTimeout(function () {
+            letterWrapper.classList.remove("rise");
+            letterWrapper.classList.add("come-down");
+
+            // Step 5: settle
+            setTimeout(function () {
+              letterWrapper.classList.remove("come-down");
+              letterWrapper.classList.add("settled");
+              settled = true;
+
+              // Step 6: auto-open the letter
+              setTimeout(function () {
+                unfoldOverlay.classList.add("show");
+              }, 500);
+            }, 800);
+          }, 900);
+        }, 600);
+      }, 800);
+    }
+
+    envelopeIntro.addEventListener("click", startFullAnimation);
+
+    // Click settled letter -> reopen letter
+    letterCard.addEventListener("click", function (e) {
+      if (settled) {
         e.stopPropagation();
-        letterModal.classList.add("show");
+        unfoldOverlay.classList.add("show");
       }
     });
 
-    letterClose.addEventListener("click", function () {
-      letterModal.classList.remove("show");
+    unfoldClose.addEventListener("click", function () {
+      unfoldOverlay.classList.remove("show");
     });
 
-    letterModal.addEventListener("click", function (e) {
-      if (e.target === letterModal) {
-        letterModal.classList.remove("show");
-      }
+    unfoldOverlay.addEventListener("click", function (e) {
+      if (e.target === unfoldOverlay) unfoldOverlay.classList.remove("show");
     });
 
     // --- Particles ---
